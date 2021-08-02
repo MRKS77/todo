@@ -1,7 +1,7 @@
 @import "~antd/dist/antd.css";
 
 .header {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .header > h1 {

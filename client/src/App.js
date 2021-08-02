@@ -1,6 +1,7 @@
 import React from "react";
-import { Button, Card, Col, Layout, Row } from "antd";
-import TodoForm from "./components/todoForm/TodoForm";
+import { Card, Col, Layout, Row } from "antd";
+import { TodoForm } from "./components/todoForm/TodoForm";
+import { TodoNotes } from "./components/todoNotes/TodoNotes";
 const { Header } = Layout;
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
           xl={{ span: 17 }}
         >
           <Card title="Note List">
-            AAAAAAAAAAAAAA
+            <TodoNotes />
           </Card>
         </Col>
       </Row>
