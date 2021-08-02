@@ -1,1 +1,9 @@
+@import "~antd/dist/antd.css";
 
+.header {
+  margin-bottom: 24px;
+}
+
+.header > h1 {
+  color: white;
+}
