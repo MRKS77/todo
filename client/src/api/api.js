@@ -1,14 +1,45 @@
-const apiUrl = "http://localhost:5000/api/todos";
+import axios from "axios";
 
-const test = "https://jsonplaceholder.typicode.com/todos/1";
-
-export const getNotes = async (url) => {
-  const response = await fetch(url);
-
-  if (!response.ok) {
-    throw new Error(`Address error ${url}. Status: ${response.status}`);
-  }
-  return await response.json();
+export const api = {
+  apiUrl: "http://localhost:5000/api/todos",
+  addNote(note) {
+    return axios.post(this.apiUrl, note);
+  },
+  getNotes() {
+    return axios.get(this.apiUrl);
+  },
+  updateNote(id, note) {
+    return axios.post(this.apiUrl + "/" + id, note);
+  },
+  deleteNote(id) {
+    return axios.delete(this.apiUrl + "/" + id);
+  },
 };
 
-getNotes(test).then(data => console.log(data));
+// export const postNotes = async () => {
+//   const response = await fetch('/', {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({
+//       title: 'fdfdfdfdfd'
+//     })
+//   });
+
+//   if (!response.ok) {
+//     throw new Error(`Address error ${apiUrl}. Status: ${response.status}`);
+//   }
+//   return await response.json();
+// };
+
+// export const getNotes = async () => {
+//   const response = await fetch('/', {
+//     method: 'GET'
+//   });
+
+//   if (!response.ok) {
+//     throw new Error(`Address error ${apiUrl}. Status: ${response.status}`);
+//   }
+//   return await response.json();
+// };

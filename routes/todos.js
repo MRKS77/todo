@@ -5,7 +5,7 @@ const Todo = require("../models/Todo");
 router.get("/", async (req, res) => {
   try {
     const todos = await Todo.find({});
-    res.json(todos);
+    res.send(todos);
   } catch (error) {
     res.send(error);
   }
@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.post("/:id", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const todo = await Todo.findOneAndUpdate({ _id: req.params.id }, req.body);
     res.send(todo);
@@ -29,7 +29,7 @@ router.post("/:id", async (req, res) => {
   }
 });
 
-router.post("/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
     try {
       const todo = await Todo.findByIdAndDelete({ _id: req.params.id });
       res.send(todo);

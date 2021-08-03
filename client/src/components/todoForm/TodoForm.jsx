@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { Form, Input, Button, Row, Col } from "antd";
 const { TextArea } = Input;
 
-export const TodoForm = () => {
+export const TodoForm = (props) => {
   const [value, setValue] = useState("");
 
   const onFinish = (values) => {
     console.log("Success:", values);
+    props.newNote(values)
   };
 
   const onFinishFailed = (errorInfo) => {

@@ -1,19 +1,16 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 const config = require("config");
 const todos = require("./routes/todos");
-let Todo = require("./models/Todo");
 
 const app = express();
-const todoRoutes = express.Router();
 const PORT = config.get("port") || 5000;
 
-app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use("api/todos", todos);
+app.use(cors());
+app.use("/api/todos", todos);
 
 async function start() {
   try {
