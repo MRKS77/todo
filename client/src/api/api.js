@@ -9,7 +9,7 @@ export const api = {
     return axios.get(this.apiUrl);
   },
   updateNote(id, note) {
-    return axios.post(this.apiUrl + "/" + id, note);
+    return axios.put(this.apiUrl + "/" + id, note);
   },
   deleteNote(id) {
     return axios.delete(this.apiUrl + "/" + id);
