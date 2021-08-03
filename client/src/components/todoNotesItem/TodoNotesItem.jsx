@@ -6,12 +6,15 @@ export const TodoNotesItem = (props) => {
     console.log(`checked = ${e.target.checked}`);
   };
 
-  const onRemove = () => {};
+  const onRemove = () => {
+    console.log(`deleted`);
+  };
 
   return (
     <List.Item
+    id={props.todo._id}
       actions={[
-        <Checkbox onChange={onChange}>Finished</Checkbox>,
+        <Checkbox checked={props.todo.completed} onChange={onChange}>Finished</Checkbox>,
         <Popconfirm
           title="Are you sure?"
           onConfirm={() => {
@@ -24,7 +27,7 @@ export const TodoNotesItem = (props) => {
         </Popconfirm>,
       ]}
     >
-      {props.todo}
+      {props.todo.title}
     </List.Item>
   );
 };

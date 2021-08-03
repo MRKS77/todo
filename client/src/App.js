@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Col, Layout, Row } from "antd";
 import { TodoForm } from "./components/todoForm/TodoForm";
 import { TodoNotes } from "./components/todoNotes/TodoNotes";
+import { getNotes } from "./api/api";
 const { Header } = Layout;
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
       <Header className="header">
         <h1>TODO</h1>
       </Header>
+
       <Row
         justify="center"
         align="middle"

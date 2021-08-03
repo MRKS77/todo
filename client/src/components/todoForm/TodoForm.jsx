@@ -30,7 +30,7 @@ export const TodoForm = () => {
         <Col xs={24} sm={24} md={17} lg={19} xl={20}>
           <Form.Item
             label="Note"
-            name="todo"
+            name="title"
             rules={[
               {
                 required: true,

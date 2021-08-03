@@ -1,25 +1,12 @@
 import React from "react";
-import { List } from 'antd';
+import { List } from "antd";
 import { TodoNotesItem } from "../todoNotesItem/TodoNotesItem";
 
 const data = [
-    'Racing car sprays burning fuel into crowd.',
-    'Japanese princess to wed commoner.',
-    'Australian walks 100km after outback crash.',
-    'Man charged over missing wedding girl.',
-    'Los Angeles battles huge wildfires.',
-    'Racing car sprays burning fuel into crowd.',
-    'Japanese princess to wed commoner.',
-    'Australian walks 100km after outback crash.',
-    'Man charged over missing wedding girl.',
-    'Los Angeles battles huge wildfires.',
-    'Racing car sprays burning fuel into crowd.',
-    'Japanese princess to wed commoner.',
-    'Australian walks 100km after outback crash.',
-    'Man charged over missing wedding girl.',
-    'Los Angeles battles huge wildfires.',
-    'Hi'
-  ];
+  { _id: 0, title: "Australian walks 100km after outback crash.", completed: true },
+  { _id: 0, title: "Japanese princess to wed commoner.", completed: false },
+  { _id: 0, title: "Racing car sprays burning fuel into crowd.", completed: true },
+];
 
 export const TodoNotes = () => {
   return (
@@ -30,14 +17,11 @@ export const TodoNotes = () => {
         emptyText: "Nothing to do",
       }}
       dataSource={data}
-      renderItem={item => (
-        <TodoNotesItem todo={item} />
-      )}
+      renderItem={(item) => <TodoNotesItem todo={item} />}
       pagination={{
         position: "bottom",
         pageSize: 10,
       }}
-    >
-    </List>
+    ></List>
   );
 };
