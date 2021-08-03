@@ -8,22 +8,48 @@ const { Header } = Layout;
 function App() {
   const [state, setState] = useState([]);
 
-  useEffect(async () => {
-    try {
-      const { data } = await api.getNotes();
-      setState({ data }.data);
-    } catch (error) {
-      console.log(error);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const { data } = await api.getNotes();
+        setState({ data }.data);
+      } catch (error) {
+        console.log(error);
+      }
     }
-  });
+    fetchData()
+
+  }, []);
 
   const newNote = async (values) => {
     try {
-      const {data} = await api.addNote(values)
+      const res = await api.addNote(values);
+      setState([...state, res.data])
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
+
+  const deleteNote = async (id) => {
+    try {
+      const res = await api.deleteNote(id);
+      debugger
+      setState(state.filter(i => i._id !== res.data._id))
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateNote = async (values) => {
+    try {
+      const update = {...values, completed: !values.completed}
+      await api.updateNote(values._id, update);
+      setState(state.map(i => i._id === update._id ? update : i))
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Header className="header">
@@ -56,7 +82,11 @@ function App() {
           xl={{ span: 17 }}
         >
           <Card title="Note List">
-            <TodoNotes state={state} />
+            <TodoNotes
+              state={state}
+              deleteNote={deleteNote}
+              updateNote={updateNote}
+            />
           </Card>
         </Col>
       </Row>

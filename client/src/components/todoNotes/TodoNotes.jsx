@@ -11,7 +11,13 @@ export const TodoNotes = (props) => {
         emptyText: "Nothing to do",
       }}
       dataSource={props.state}
-      renderItem={(item) => <TodoNotesItem todo={item} />}
+      renderItem={(item) => (
+        <TodoNotesItem
+          todo={item}
+          deleteNote={props.deleteNote}
+          updateNote={props.updateNote}
+        />
+      )}
       pagination={{
         position: "bottom",
         pageSize: 10,

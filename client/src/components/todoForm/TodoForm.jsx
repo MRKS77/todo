@@ -1,25 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { Form, Input, Button, Row, Col } from "antd";
 const { TextArea } = Input;
 
 export const TodoForm = (props) => {
-  const [value, setValue] = useState("");
+  const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    console.log("Success:", values);
-    props.newNote(values)
+    props.newNote(values);
+    form.resetFields()
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
-  const onChange = ({ target: { value } }) => {
-    setValue({ value });
-  };
-
   return (
     <Form
+      form={form}
       name="basic"
       initialValues={{
         remember: true,
@@ -40,8 +37,6 @@ export const TodoForm = (props) => {
             ]}
           >
             <TextArea
-              value={value}
-              onChange={onChange}
               placeholder="Create your note"
               autoSize={{ minRows: 3, maxRows: 5 }}
             />
