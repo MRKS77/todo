@@ -1,18 +1,29 @@
-import axios from "axios";
-
 export const api = {
   apiUrl: "http://localhost:5000/api/todos",
-  addNote(note) {
-    return axios.post(this.apiUrl, note);
+  async addNote(note) {
+    return await (await fetch(this.apiUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(note)
+    })).json();
   },
-  getNotes() {
-    return axios.get(this.apiUrl);
+  async getNotes() {
+    return await (await fetch(this.apiUrl)).json();
   },
-  updateNote(id, note) {
-    return axios.put(this.apiUrl + "/" + id, note);
+  async updateNote(id, note) {
+    return await (await fetch(this.apiUrl + "/" + id, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(note)
+    })).json();
   },
-  deleteNote(id) {
-    return axios.delete(this.apiUrl + "/" + id);
+  async deleteNote(id) {
+    return await (await fetch(this.apiUrl + "/" + id, {
+      method: 'DELETE',})).json();
   },
 };
 

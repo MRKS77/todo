@@ -5,36 +5,36 @@ const Todo = require("../models/Todo");
 router.get("/", async (req, res) => {
   try {
     const todos = await Todo.find({});
-    res.send(todos);
+    res.status(200).json({todos});
   } catch (error) {
-    res.send(error);
+    res.status(500).json({error});
   }
 });
 
 router.post("/", async (req, res) => {
   try {
-    const todo = await new Todo(req.body).save();
-    res.send(todo);
+    const todos = await new Todo(req.body).save();
+    res.status(200).json({todos});
   } catch (error) {
-    res.send(error);
+    res.status(500).json({error});
   }
 });
 
 router.put("/:id", async (req, res) => {
   try {
-    const todo = await Todo.findOneAndUpdate({ _id: req.params.id }, req.body);
-    res.send(todo);
+    const todos = await Todo.findOneAndUpdate({ _id: req.params.id }, req.body);
+    res.status(200).json({todos});
   } catch (error) {
-    res.send(error);
+    res.status(500).json({error});
   }
 });
 
 router.delete("/:id", async (req, res) => {
     try {
-      const todo = await Todo.findByIdAndDelete({ _id: req.params.id });
-      res.send(todo);
+      const todos = await Todo.findByIdAndDelete({ _id: req.params.id });
+      res.status(200).json({todos});
     } catch (error) {
-      res.send(error);
+      res.status(500).json({error});
     }
   });
 

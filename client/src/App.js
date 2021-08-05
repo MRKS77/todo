@@ -11,8 +11,8 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data } = await api.getNotes();
-        setState({ data }.data);
+        const data = await api.getNotes();
+        setState(data.todos);
       } catch (error) {
         console.log(error);
       }
@@ -24,7 +24,7 @@ function App() {
   const newNote = async (values) => {
     try {
       const res = await api.addNote(values);
-      setState([...state, res.data])
+      setState([...state, res.todos])
     } catch (error) {
       console.log(error);
     }
@@ -33,8 +33,7 @@ function App() {
   const deleteNote = async (id) => {
     try {
       const res = await api.deleteNote(id);
-      debugger
-      setState(state.filter(i => i._id !== res.data._id))
+      setState(state.filter(i => i._id !== res.todos._id))
     } catch (error) {
       console.log(error);
     }
